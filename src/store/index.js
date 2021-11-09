@@ -13,8 +13,8 @@ export default new Vuex.Store({
     companyData:null,
     matchComp:[],
     apiURL:"https://alpha-vantage.p.rapidapi.com",
-    apiKey:"d74df39cf3mshca5d31e025558d4p14ae96jsn259fe25931f5",
-    
+    apiKey:"",
+
   },
   mutations: {
     SET_NUMBER(state,payload) {
