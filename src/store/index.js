@@ -93,7 +93,7 @@ export default new Vuex.Store({
           };
           companyDetails.push(detail);
         });
-        commit("setCompanyStockDetails", {
+        commit("SET_COMPANY_STOCKDETAIL", {
           companyDetails,
         });        
       });
