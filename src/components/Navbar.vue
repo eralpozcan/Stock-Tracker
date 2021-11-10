@@ -99,6 +99,9 @@ export default {
     },
     setKeywords(keywords){
         this.keywords = keywords
+        //if(keyword.length>4){
+          this.$store.dispatch('setKeywords',keywords)
+        //}else ''
     },    
     goSelectCompany(company) {
         console.log("getSelect",company);
