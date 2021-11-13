@@ -1,5 +1,4 @@
 <template>
-  <!-- Autocomplete Input -->
   <v-autocomplete
     class="mt-5"
     v-model="companySelect"
@@ -33,7 +32,6 @@
 <script>
 export default {
   props: {
-    // Items to use in input.
     items: {
       type: Array,
       required: false,

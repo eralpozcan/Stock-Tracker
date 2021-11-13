@@ -6,6 +6,7 @@
         dark
         >
         <div class="d-flex align-center">
+          <router-link :to="{ name: 'Home' }">
             <v-img
             alt="Vuetify Logo"
             class="shrink mr-2"
@@ -14,10 +15,11 @@
             transition="scale-transition"
             width="40"
             />
+          </router-link>
         </div>
         <v-spacer></v-spacer>
         <Input 
-        :items="searchCompanyState" 
+        :items="searchCompanyMatch" 
         @company-select="goSelectCompany"
         @keywords="setKeywords"/>        
         <v-btn
@@ -27,7 +29,7 @@
             raised
             rounded
             light
-            @click="getSearchDataKeywords"
+            @click="SearchDataKeywords"
         >Search</v-btn>
         <v-spacer></v-spacer>
         <v-btn
@@ -37,19 +39,16 @@
             raised
             rounded
             light
-            @click="adminState()"
+            @click="adminPage()"
         >{{adminButtonText}}</v-btn>
         <!--!Switch Vuex bağını gözden geçir -->
         <v-switch
         class = "mt-3"
-        v-model="switchButton"
-        :label="`Admin mode: ${switchButton ? true:false}`"
+        @change="adminStatusVuex()"
+        v-model="isAdmin"
+        :label="`Admin mode: ${isAdmin ? true:false}`"
         ></v-switch>      
-        </v-app-bar>
-        <v-row class="mt-5">
-            {{searchCompanyState}} 
-        </v-row>
-        
+        </v-app-bar>     
     </v-app>
 </template>
 <script>
@@ -62,49 +61,58 @@ export default {
   },
   data() {
       return{
-        switchButton:true,
-        state:false,
         keywords:"",
         selectedCompany:null,
+        isAdmin : false,
       }
   },
   computed:{
       adminButtonText(){
-        return this.$store.state.adminPage;
+        return this.$store.state.adminPageText;
       },
-      searchCompanyState(){
-        return this.$store.state.matchComp;
+      adminStatus(){
+        return this.isAdmin === false ? "User" : "Admin";
+      },
+      searchCompanyMatch(){
+        return this.$store.state.searchMatch;
       }
   },
+  watch: {
+
+  },
   methods:{
-    adminState(){
-      let adminEnable = false
-      if (this.switchButton){
-        // Admin Page route. Eklenecek
-        adminEnable = true
-        this.$store.dispatch('adminPermCheck',adminEnable,this.switchButton)
+    adminPage(){
+      if (this.$store.getters['getAdminPerm']){
+        this.$router.push({
+          name: `Logs`,
+          params: {},
+        });
       }else {
-        adminEnable = false
-        this.$store.dispatch('adminPermCheck', adminEnable,this.switchButton)
-      }
+        this.$store.dispatch('SetSnackStatus',this.isAdmin ? false:true)
+      }     
     },
-    getSearchDataKeywords(){
-        if (this.keywords.length > 1) {
-            console.log("testVal",this.keywords)
-            this.$store.dispatch("searchStock", { keywords: this.keywords });
-        }else {
-            console.log("1")
-        }
-        this.selectedCompany = null
+    adminStatusVuex(){
+      this.$store.commit("SET_ADMIN_PERM", this.isAdmin);
+    },
+    SearchDataKeywords(){
+      if (this.keywords.length > 3) {
+          localStorage.setItem("searchKeywords", this.keywords);
+          this.$store.dispatch("SearchCompany", { keywords: this.keywords });    
+      }else {
+          console.log("1")
+      }
     },
     setKeywords(keywords){
         this.keywords = keywords
-        //if(keyword.length>4){
-          this.$store.dispatch('setKeywords',keywords)
-        //}else ''
     },    
     goSelectCompany(company) {
-        console.log("getSelect",company);
+      this.selectedCompany = company;
+      this.$store.dispatch('SetCompanyData',company)
+      this.$router.push({
+        name: `Result`,
+        params: { symbol: company["1. symbol"], company },
+      });
+        
     },
   }
 

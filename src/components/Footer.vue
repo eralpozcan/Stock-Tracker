@@ -1,9 +1,9 @@
 <template>
     <v-footer>
       <v-snackbar
-        v-model="snackBarStatus"
+        v-model="$store.getters.getSnackStatus"
       >
-        {{ $store.state.snackbarText }}
+        {{ SnackText }}
 
         <template v-slot:action="{ attrs }">
           <v-btn
@@ -20,7 +20,7 @@
         class="text-center"
         cols="12"
       >
-        {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
+        {{ new Date().getFullYear() }} — <strong>Vuetify Stock</strong>
       </v-col>      
     </v-footer>
 </template>
@@ -31,25 +31,18 @@ export default {
 
   data(){
     return {
-        snackbar:false,
     }
   },
   computed:{
-      snackBarStatus(){
-        if (this.$store.state.admin){
-            return false
-        }else{
-            return true
-        }
-      }
-  },
-  watch:{
-
+    SnackText(){
+      return this.$store.state.snackBarText  // Get Snackbar title text
+    }
   },
   methods:{
       snackBarClose(){
-        return 
+        this.$store.dispatch('SetSnackStatus',false) // Set Snacbar Status
       }
+
   }
 };
 </script>

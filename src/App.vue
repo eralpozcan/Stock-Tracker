@@ -1,37 +1,28 @@
 <template>
   <v-app>
-
-    <Navbar/>
-    <v-main>
-
-    </v-main>
-
-    <Footer/>
+    <router-view />
   </v-app>
 </template>
 
 <script>
-import Navbar from './components/Navbar.vue';
-import Footer from './components/Footer.vue';
-
 export default {
-  components: { Navbar,Footer },
+
   name: 'App',
   data: () => ({
-      snackbar: false,
-      switch1:true,
-      text: `Yetkisiz Giriş`,
+
   }),
-  methods:{
-    adminState(){
-      if (this.switch1){
-        // Admin route.
-        return this.snackbar = false
-      }else {
-        return this.snackbar = true
-      }
-    }
-    
-  }
+  watch: {
+    $route(to, from) {
+      // save logs for each success routing with authorized status
+      let newRouteItem = {
+        name: `Route Change - ${new Date().toLocaleString("en-US")}`,
+        children: [
+          { name: `From : ${from.fullPath}` },
+          { name: `To : ${to.fullPath}` },
+        ],
+      };
+      this.$store.commit('SET_ROUTE_CHANGE_ARRAY', newRouteItem);  
+    }  
+  },
 };
 </script>
