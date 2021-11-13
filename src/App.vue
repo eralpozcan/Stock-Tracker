@@ -8,9 +8,6 @@
 export default {
 
   name: 'App',
-  data: () => ({
-
-  }),
   watch: {
     $route(to, from) {
       // save logs for each success routing with authorized status

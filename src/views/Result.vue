@@ -6,7 +6,6 @@
 
 <script>
 import CandleStick from "../components/CandleStick.vue";
-
 export default {
   name: "Result",
   components: {
@@ -21,10 +20,7 @@ export default {
   created() {
     const symbol = this.$route.params.symbol; // Params symbol from route
     this.companySymbol = symbol;
-    this.$store.dispatch("SearchDetailStock",{symbol:symbol,function:this.$store.state.timeSeries});
-  },
-  methods: {
-
+    this.$store.dispatch("SearchDetailStock",{symbol: symbol, function:this.$store.state.timeSeries});
   },
 };
 </script>
