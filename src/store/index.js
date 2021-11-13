@@ -55,6 +55,7 @@ export default new Vuex.Store({
 
   },
   getters:{
+    // Getters All States get.
     getAdminPerm(state){
       return state.isAdmin
     },
@@ -93,18 +94,23 @@ export default new Vuex.Store({
 
   },
   actions:{
+    //Set Snack Status 
     SetSnackStatus(context,val){
       context.commit('SET_SNACK_STATUS',val)
     },
+    //Set Admin Status 
     SetAdminStatus(context,val){
       context.commit('SET_ADMIN_PERM',val)
     },
+    //Set Time Series
     SetTimeSeries(context,val){
       context.commit('SET_TIME_SERIES',val)
     },
+    //Set Company Data 
     SetCompanyData({commit},val){
       commit('SET_COMPANY_DETAIL',val)
     },
+    // Search Best Keywords 
     SearchCompany({state,commit},data){
       axios.get(`${state.apiURL}/query`,{
         params:{
@@ -121,6 +127,7 @@ export default new Vuex.Store({
         commit("SET_COMPANY_MATCH",response.data.bestMatches);
       });      
     },
+    // Search Stock Detail Daily- Weekenly-Montly
     SearchDetailStock(context,data){
       console.log("stoks",context.getters.getTimeSeries)
       axios.get(`${context.state.apiURL}/query`,{

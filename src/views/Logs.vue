@@ -20,6 +20,7 @@
 export default {
     data(){
         return {
+            // Get logs store
             logItems: this.$store.getters.getLogs
         }
     },

@@ -46,6 +46,7 @@ export default {
     this.warningDialog = this.$store.state.isWarningDialogOpen;
   },
   methods: {
+    // Close warning button function.
     closeDialog() {
       this.warningDialog = false;
       this.$store.commit("SET_DIALOG",this.warningDialog);

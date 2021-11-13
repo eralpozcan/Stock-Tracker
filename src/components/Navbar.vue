@@ -41,7 +41,6 @@
             light
             @click="adminPage()"
         >{{adminButtonText}}</v-btn>
-        <!--!Switch Vuex bağını gözden geçir -->
         <v-switch
         class = "mt-3"
         @change="adminStatusVuex()"
@@ -82,6 +81,7 @@ export default {
   },
   methods:{
     adminPage(){
+      // Check Admin perm and logs route
       if (this.$store.getters['getAdminPerm']){
         this.$router.push({
           name: `Logs`,
@@ -92,9 +92,11 @@ export default {
       }     
     },
     adminStatusVuex(){
+      // Set Admın vuex 
       this.$store.commit("SET_ADMIN_PERM", this.isAdmin);
     },
     SearchDataKeywords(){
+      // Send Keywords
       if (this.keywords.length > 3) {
           localStorage.setItem("searchKeywords", this.keywords);
           this.$store.dispatch("SearchCompany", { keywords: this.keywords });    
@@ -103,8 +105,10 @@ export default {
       }
     },
     setKeywords(keywords){
+      // Set Keywords components data
         this.keywords = keywords
-    },    
+    }, 
+     // Selected company route   
     goSelectCompany(company) {
       this.selectedCompany = company;
       this.$store.dispatch('SetCompanyData',company)
