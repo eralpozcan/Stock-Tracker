@@ -4,7 +4,7 @@ import { useLocalStorage } from "@vueuse/core";
 export const useAuthStore = defineStore('auth', {
   state: () => ({
     darkMode: false,
-    auth: useLocalStorage('auth',)
+    auth: useLocalStorage('auth' , false)
   }),
 
   getters: {
