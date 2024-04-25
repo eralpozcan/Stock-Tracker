@@ -12,7 +12,7 @@ const useStockService = {
         return JSON.parse(cachedData);
       } else {
         const response = await axios.get(`${API_URL}/time_series?symbol=${symbol}&interval=${interval}&apikey=${API_KEY}`);
-        if (response.data.status || response.data.code === 429 || response.data.code === 404) {
+        if (response.data.code === 429 || response.data.code === 404) {
           console.log('Error fetching time series:', response.data.message);
           return null;
         }
