@@ -1,51 +1,30 @@
-# vue-stock-tracker
 
-This template should help get you started developing with Vue 3 in Vite.
+<div align="center">
+  <img src="./src/assets/logo.png">
+</div>
+<h1 align="center">Stock Tracker</h1>
 
-## Recommended IDE Setup
+<div align="center">
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+<img src="https://img.shields.io/badge/Vue%20js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D">
+<img src="https://img.shields.io/badge/axios-671ddf?&style=for-the-badge&logo=axios&logoColor=white">
+</div>
 
-## Customize configuration
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+### 📔 **About**
+You can track financial stocks on a minute, hourly and daily basis. Basic simple application where you can observe their charts. This app using [Twelvedata API](https://twelvedata.com/). Sometimes the system may not work due to API limits. For the oldest version of this repo, see the [old/vue2](https://github.com/Eralpozcan/Vue-Stock-Chart/tree/old/vue2) branch.
 
-## Project Setup
+### 📜 **Features**
 
-```sh
-pnpm install
-```
+- The user can search for stocks.
+- They can examine the hourly daily and weekly charts of the stock they are looking for.
+- The user can log in and out.
+- The time-series are saved in sessionStorage and do not need to be requested again. 
 
-### Compile and Hot-Reload for Development
-
-```sh
-pnpm dev
-```
-
-### Compile and Minify for Production
-
-```sh
-pnpm build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-pnpm test:unit
-```
-
-### Run End-to-End Tests with [Cypress](https://www.cypress.io/)
-
-```sh
-pnpm test:e2e:dev
-```
-
-This runs the end-to-end tests against the Vite development server.
-It is much faster than the production build.
-
-But it's still recommended to test the production build with `test:e2e` before deploying (e.g. in CI environments):
-
-```sh
-pnpm build
-pnpm test:e2e
-```
+### 📦 **Tech Stack**
+- [Vue.js](https://vuejs.org/)
+- [Pinia](https://pinia.vuejs.org/)
+- [Vue Router](https://router.vuejs.org/)
+- [Axios](https://axios-http.com/)
+- [PrimeVue](https://primevue.org/)
+- [ApexCharts](https://apexcharts.com/)

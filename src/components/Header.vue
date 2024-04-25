@@ -34,12 +34,11 @@
 <script setup>
 import { ref ,computed,watch} from "vue";
 import { useRouter } from 'vue-router';
-import { useSessionStore } from '@/stores/session';
-
+import { useAuthStore } from '@/stores/auth';
 import useStockService from '@/services/stockService';
 
 const router = useRouter()
-const sessionStore = useSessionStore()
+const authStore = useAuthStore()
 const menu = ref()
 const items = ref([
   {
@@ -64,7 +63,7 @@ const selectedStock = ref('')
 const stocksData = ref([])
 
 const isLoggedIn = computed(() => {
-  return sessionStore.isLoggedIn;
+  return authStore.isLoggedIn;
 })
 
 function toggle(event) {
@@ -72,11 +71,11 @@ function toggle(event) {
 }
 
 function logout() {
-  sessionStore.logout();
+  authStore.logout();
 }
 
 function login() {
-  sessionStore.login();
+  authStore.login();
 }
 
 function getSearchStock(event) {
@@ -89,7 +88,7 @@ function getSearchStock(event) {
 watch(() => selectedStock.value, (value) => {
   setTimeout(() => {
     if (value.symbol) {
-      router.push(`/symbol/${value.symbol}`);
+      router.push({name: 'Results', params: { symbol: value.symbol }})
       selectedStock.value = '';
     }
   }, 250);

@@ -25,8 +25,9 @@
     </div>
     <div class="col-12 md:col-6 overflow-hidden">
       <img
-        src="/src/assets/financial.png"
+        src="/src/assets/financial.webp"
         alt="Image"
+        loading="lazy"
         class="md:ml-auto block md:h-full"
         style="clip-path: polygon(8% 0, 100% 0%, 100% 100%, 0 100%)"
       />
