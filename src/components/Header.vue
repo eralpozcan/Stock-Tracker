@@ -1,5 +1,5 @@
 <template>
-  <Toolbar>
+  <Toolbar class="sm:flex flex-nowrap">
     <template #start>
       <router-link to="/">
         <img src="/src/assets/logo.png" width="42px" height="42px" alt="Stock Tracker Logo">

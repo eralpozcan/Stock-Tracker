@@ -28,7 +28,7 @@
         src="/src/assets/financial.webp"
         alt="Image"
         loading="lazy"
-        class="md:ml-auto block md:h-full"
+        class="md:ml-auto block md:h-full sm:h-96 w-full object-cover"
         style="clip-path: polygon(8% 0, 100% 0%, 100% 100%, 0 100%)"
       />
     </div>
